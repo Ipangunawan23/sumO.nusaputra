@@ -748,13 +748,6 @@ function timesHtml(ex){
 function renderHome(){
   var cards = EXAMS.map(function(ex){
     var st=S(ex.id), s=statusOf(st), nE = ex.items.length - nMcq(ex), line='';
-    if(st.status==='locked' && st.result){
-      var r = st.result;
-      line = '<p class="scoreline">'
-        + (r.score!==null ? 'Nilai PG: <b>'+fmtScore(r.score)+'</b> &middot; '+r.correct+'/'+r.total+' benar' : '')
-        + (nE ? (r.score!==null?' &middot; ':'')+'Essay: menunggu penilaian dosen' : '')
-        + ' &middot; percobaan: '+st.history.length+'x</p>';
-    }
     var btns;
     if(st.status==='locked') btns = '<button class="btn blue" data-act="open" data-id="'+ex.id+'"><i class="fas fa-eye"></i> Lihat Hasil</button><button class="btn ghost" data-act="retakeHome" data-id="'+ex.id+'"><i class="fas fa-redo"></i> Ulangi</button>';
     else if(st.status==='running') btns = '<button class="btn blue" data-act="open" data-id="'+ex.id+'"><i class="fas fa-play"></i> Lanjutkan</button>';
